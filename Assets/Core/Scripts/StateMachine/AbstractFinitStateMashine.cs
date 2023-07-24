@@ -65,14 +65,6 @@ namespace Main.StateMachine
         //        fixedUpdateExecutor.FixedUpdate();
         //}
 
-        //private protected virtual void ExicuteUpdate()
-        //{
-        //    IUpdate updateExecutor = _currentState as IUpdate;
-
-        //    if (updateExecutor != null)
-        //        updateExecutor.Update();
-        //}
-
         private void SetState(IState newState)
         {
             if (newState == null)
