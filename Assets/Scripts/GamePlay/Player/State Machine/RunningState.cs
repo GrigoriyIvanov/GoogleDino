@@ -1,17 +1,13 @@
 namespace Gameplay.Player.FSM
 {
-    public class RunningState : AliveState
+    public abstract class RunningState : AliveState, IExecuteJump
     {
-        public RunningState(PlayerStateMachine fsm, Player instance) : base(fsm, instance) { }
+        protected RunningState(PlayerStateMachine fsm, Player instance) : base(fsm, instance) { }
 
-        public override void EnterState()
+        public void ExecuteJump()
         {
-            _instance.Animator.SetBool("Running", true);
-        }
-
-        public override void ExitState()
-        {
-            _instance.Animator.SetBool("Running", false);
+            if (_instance.IsGrounded)
+                _fsm.ActionRespond(PlayerActions.Jump);
         }
     }
 }

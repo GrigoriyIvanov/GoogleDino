@@ -1,18 +1,34 @@
+using Core.Interfaces.EventFunctions.Updates;
+
 namespace Gameplay.Player.FSM
 {
-    public class JumpingState : AliveState
+    public class JumpingState : AliveState, IFixedUpdate, IExecuteDownMove
     {
+        private bool isJumpedOnThisFrame;
+
         public JumpingState(PlayerStateMachine fsm, Player instance) : base(fsm, instance) { }
 
         public override void EnterState()
         {
             _instance.ProduceJump();
             _instance.Animator.SetBool("Jump", true);
+            isJumpedOnThisFrame = true;
         }
 
-        public override void ExitState()
+        public override void ExitState() => _instance.Animator.SetBool("Jump", false);
+
+        public void FixedUpdate()
         {
-            _instance.Animator.SetBool("Jump", false);
+            if (isJumpedOnThisFrame)
+            {
+                isJumpedOnThisFrame = false;
+                return;
+            }
+
+            if (_instance.IsGrounded)
+                _fsm.ActionRespond(PlayerActions.Land);
         }
+
+        public void ExecuteDownMove() => _instance.ProduceDownJump();
     }
 }
