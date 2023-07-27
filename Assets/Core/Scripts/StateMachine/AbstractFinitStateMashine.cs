@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Main.StateMachine
 {
-    public abstract class AbstractFinitStateMashine<TActions, TControlledInstance> : MonoBehaviour where TActions : struct where TControlledInstance : class
+    public abstract class AbstractFinitStateMashine<TActions, TControlledInstance> : MonoBehaviour, IStateMachine<TActions> where TActions : struct where TControlledInstance : class
     {
         public class Transition
         {
@@ -52,18 +52,6 @@ namespace Main.StateMachine
 
         private void SetInitialState() => SetState(_initialState);
         #endregion
-
-        //private void FixedUpdate() => ExicuteFixedUpdate();
-
-        //private void Update() => ExicuteUpdate();
-
-        //private protected virtual void ExicuteFixedUpdate()
-        //{
-        //    IFixedUpdate fixedUpdateExecutor = _currentState as IFixedUpdate;
-
-        //    if (fixedUpdateExecutor != null)
-        //        fixedUpdateExecutor.FixedUpdate();
-        //}
 
         private void SetState(IState newState)
         {

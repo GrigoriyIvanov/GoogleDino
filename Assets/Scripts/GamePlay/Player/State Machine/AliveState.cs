@@ -4,11 +4,11 @@ using UnityEngine;
 
 namespace Gameplay.Player.FSM
 {
-    public abstract class AliveState : AbstractState<PlayerStateMachine, Player>, ITriggerEnter
+    public abstract class AliveState : AbstractState<PlayerActions, Player>, ITriggerEnter
     {
-        public AliveState(PlayerStateMachine fsm, Player instance) : base(fsm, instance) { }
+        public AliveState(IStateMachine<PlayerActions> fsm, Player instance) : base(fsm, instance) { }
 
-        public void OnTriggerEnter(Collider other)
+        public void OnTriggerEnter(Collider2D other)
         {
             if (other.gameObject.layer == 7)
                 _fsm.ActionRespond(PlayerActions.Die);

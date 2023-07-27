@@ -1,4 +1,5 @@
 using Core.Interfaces.EventFunctions.Updates;
+using Main.Interfaces.EventFunctions.Collision;
 using Main.StateMachine;
 using UnityEngine;
 using static UnityEngine.InputSystem.InputAction;
@@ -93,6 +94,8 @@ namespace Gameplay.Player.FSM
 
         private void OnGoDownCanceled(CallbackContext callbackContext) => isDownMove = false;
 
+        private void OnTriggerEnter2D(Collider2D collision) => (_currentState as ITriggerEnter)?.OnTriggerEnter(collision);
+        
         private void OnValidate() => _player.OnValidate(transform);
     }
 }

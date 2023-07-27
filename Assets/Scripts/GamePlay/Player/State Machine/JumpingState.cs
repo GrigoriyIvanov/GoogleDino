@@ -6,7 +6,7 @@ namespace Gameplay.Player.FSM
     {
         private bool isJumpedOnThisFrame;
 
-        public JumpingState(PlayerStateMachine fsm, Player instance) : base(fsm, instance) { }
+        public JumpingState(IStateMachine<PlayerActions> fsm, Player instance) : base(fsm, instance) { }
 
         public override void EnterState()
         {

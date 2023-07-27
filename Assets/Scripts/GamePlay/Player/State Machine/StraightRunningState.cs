@@ -2,7 +2,7 @@ namespace Gameplay.Player.FSM
 {
     public class StraightRunningState : RunningState, IExecuteDownMove
     {
-        public StraightRunningState(PlayerStateMachine fsm, Player instance) : base(fsm, instance) { }
+        public StraightRunningState(IStateMachine<PlayerActions> fsm, Player instance) : base(fsm, instance) { }
 
         public override void EnterState() => _instance.Animator.SetBool("StraightRun", true);
 

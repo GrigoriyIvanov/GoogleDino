@@ -2,7 +2,7 @@ namespace Gameplay.Player.FSM
 {
     public abstract class RunningState : AliveState, IExecuteJump
     {
-        protected RunningState(PlayerStateMachine fsm, Player instance) : base(fsm, instance) { }
+        protected RunningState(IStateMachine<PlayerActions> fsm, Player instance) : base(fsm, instance) { }
 
         public void ExecuteJump()
         {
