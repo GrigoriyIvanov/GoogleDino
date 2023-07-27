@@ -1,4 +1,7 @@
-public interface IStateMachine<TActions> where TActions : struct
+namespace Main.StateMachine
 {
-    public void ActionRespond(TActions action);
+    public interface IStateMachine<TActions> where TActions : struct
+    {
+        public void ActionRespond(TActions action);
+    }
 }
