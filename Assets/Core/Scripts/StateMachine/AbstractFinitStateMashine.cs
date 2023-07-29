@@ -34,7 +34,7 @@ namespace Main.StateMachine
         private protected IState _currentState;
         private protected IState _initialState;
 
-        private protected Dictionary<Transition, IState> _transitions = new Dictionary<Transition, IState>();
+        private protected readonly Dictionary<Transition, IState> _transitions = new Dictionary<Transition, IState>();
 
         #region Initialize
         private void Awake()

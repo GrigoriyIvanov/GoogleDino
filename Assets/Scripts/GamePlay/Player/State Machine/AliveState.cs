@@ -1,10 +1,10 @@
-using Main.Interfaces.EventFunctions.Collision;
+using Main.Interfaces.EventFunctions.Collisions;
 using Main.StateMachine;
 using UnityEngine;
 
 namespace Gameplay.Player.FSM
 {
-    public abstract class AliveState : AbstractState<PlayerActions, Player>, ITriggerEnter
+    public abstract class AliveState : AbstractState<PlayerActions, Player>, ITriggerEnter2D
     {
         public AliveState(IStateMachine<PlayerActions> fsm, Player instance) : base(fsm, instance) { }
 

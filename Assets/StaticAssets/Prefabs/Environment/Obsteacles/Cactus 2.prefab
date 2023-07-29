@@ -1,0 +1,71 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &387772869648004649
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 814206013673832120, guid: 78ad64be26c1bb54c9111605afddd0cd, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -1716126801, guid: 9288f9f2556d3e648b660ebf0f978f2c, type: 3}
+    - target: {fileID: 814206013673832121, guid: 78ad64be26c1bb54c9111605afddd0cd, type: 3}
+      propertyPath: m_Size.x
+      value: 0.73
+      objectReference: {fileID: 0}
+    - target: {fileID: 814206013673832121, guid: 78ad64be26c1bb54c9111605afddd0cd, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 814206013673832122, guid: 78ad64be26c1bb54c9111605afddd0cd, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 814206013673832122, guid: 78ad64be26c1bb54c9111605afddd0cd, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 814206013673832122, guid: 78ad64be26c1bb54c9111605afddd0cd, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 814206013673832122, guid: 78ad64be26c1bb54c9111605afddd0cd, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 814206013673832122, guid: 78ad64be26c1bb54c9111605afddd0cd, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 814206013673832122, guid: 78ad64be26c1bb54c9111605afddd0cd, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 814206013673832122, guid: 78ad64be26c1bb54c9111605afddd0cd, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 814206013673832122, guid: 78ad64be26c1bb54c9111605afddd0cd, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 814206013673832122, guid: 78ad64be26c1bb54c9111605afddd0cd, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 814206013673832122, guid: 78ad64be26c1bb54c9111605afddd0cd, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 814206013673832122, guid: 78ad64be26c1bb54c9111605afddd0cd, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 814206013673832123, guid: 78ad64be26c1bb54c9111605afddd0cd, type: 3}
+      propertyPath: m_Name
+      value: Cactus 2
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 78ad64be26c1bb54c9111605afddd0cd, type: 3}

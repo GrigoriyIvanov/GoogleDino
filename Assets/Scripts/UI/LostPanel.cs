@@ -7,14 +7,22 @@ public class LostPanel : MonoBehaviour
 
     private void Awake()
     {
-        GameManager.OnLost += () => gameObject.SetActive(true);
+        GameManager.OnLost += Activate;
+        _restart.onClick.AddListener(GameManager.Restart);
+
         gameObject.SetActive(false);
     }
 
+    private void OnDestroy()
+    {
+        GameManager.OnLost -= Activate;
+        _restart.onClick.RemoveListener(GameManager.Restart);
+    }
 
-    private void OnEnable() => _restart.onClick.AddListener(GameManager.Restart);
-
-    private void OnDisable() => _restart.onClick.RemoveListener(GameManager.Restart);
+    private void Activate()
+    {
+        gameObject.SetActive(true);
+    }
 
     private void OnValidate()
     {

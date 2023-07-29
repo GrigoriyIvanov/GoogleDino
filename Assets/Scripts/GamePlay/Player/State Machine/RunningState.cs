@@ -6,7 +6,7 @@ namespace Gameplay.Player.FSM
 
         public void ExecuteJump()
         {
-            if (_instance.IsGrounded)
+            if (_controlledObject.IsGrounded)
                 _fsm.ActionRespond(PlayerActions.Jump);
         }
     }

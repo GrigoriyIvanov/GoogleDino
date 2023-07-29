@@ -10,12 +10,12 @@ namespace Gameplay.Player.FSM
 
         public override void EnterState()
         {
-            _instance.ProduceJump();
-            _instance.Animator.SetBool("Jump", true);
+            _controlledObject.ProduceJump();
+            _controlledObject.Animator.SetBool("Jump", true);
             isJumpedOnThisFrame = true;
         }
 
-        public override void ExitState() => _instance.Animator.SetBool("Jump", false);
+        public override void ExitState() => _controlledObject.Animator.SetBool("Jump", false);
 
         public void FixedUpdate()
         {
@@ -25,10 +25,10 @@ namespace Gameplay.Player.FSM
                 return;
             }
 
-            if (_instance.IsGrounded)
+            if (_controlledObject.IsGrounded)
                 _fsm.ActionRespond(PlayerActions.Land);
         }
 
-        public void ExecuteDownMove() => _instance.ProduceDownJump();
+        public void ExecuteDownMove() => _controlledObject.ProduceDownJump();
     }
 }
