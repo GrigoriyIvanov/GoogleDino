@@ -1,4 +1,5 @@
-using Core;
+using Core.Inftastracture.GameManagment;
+using Core.Interfaces;
 using Zenject;
 
 public class GameManagerInstaller : MonoInstaller<GameManagerInstaller>

@@ -1,16 +1,14 @@
-using Core;
+using Core.Inftastracture.GameManagment.FSM;
+using Core.StateMachine;
 using UnityEngine;
 using Zenject;
 
-public class BootSceneRunner : MonoBehaviour
+namespace Core.Inftastracture
 {
-    private IGameManager _gameManager;
-
-    [Inject]
-    public void Constructor(IGameManager gameManager)
+    public class BootSceneRunner : MonoBehaviour
     {
-        _gameManager = gameManager;
+        [Inject]
+        public void Constructor(IStateMachine<GameActions> gameManager) =>
+            gameManager.SetInitialState();
     }
-
-    private void Awake() => _gameManager.StartPlay();
 }

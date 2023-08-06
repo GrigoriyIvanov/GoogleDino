@@ -1,14 +1,9 @@
-namespace Main.StateMachine
+namespace Core.StateMachine
 {
     public abstract class AbstractState<TActions, TObject> : IState where TActions : struct where TObject : class
     {
         private protected IStateMachine<TActions> _fsm;
         private protected TObject _controlledObject;
-
-        public AbstractState()
-        {
-
-        }
 
         public AbstractState(IStateMachine<TActions> fsm, TObject instance)
         {

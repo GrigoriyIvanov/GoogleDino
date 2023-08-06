@@ -1,4 +1,4 @@
-namespace Main.StateMachine
+namespace Core.StateMachine
 {
     public interface IState
     {

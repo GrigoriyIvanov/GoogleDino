@@ -1,8 +1,10 @@
-using System;
 using System.Collections;
 using UnityEngine;
 
-public interface ICoroutineRunner
+namespace Core.Interfaces
 {
-    public Coroutine StartCoroutine(IEnumerator coroutine);
+    public interface ICoroutineRunner
+    {
+        public Coroutine StartCoroutine(IEnumerator coroutine);
+    }
 }

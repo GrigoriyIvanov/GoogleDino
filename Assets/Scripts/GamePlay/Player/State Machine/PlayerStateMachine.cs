@@ -1,7 +1,6 @@
-using Core.Interfaces;
 using Core.Interfaces.EventFunctions.Updates;
+using Core.StateMachine;
 using Main.Interfaces.EventFunctions.Collisions;
-using Main.StateMachine;
 using UnityEngine;
 using Zenject;
 using static UnityEngine.InputSystem.InputAction;
@@ -17,7 +16,7 @@ namespace Gameplay.Player.FSM
         Land
     }
 
-    public class PlayerStateMachine : AbstractFinitStateMashine<PlayerActions, Player>, PlayerInput.IMovementActions
+    public class PlayerStateMachine : AbstractFinitStateMashine<PlayerActions>, PlayerInput.IMovementActions
     {
         private PlayerInput _inputService;
 
@@ -33,41 +32,41 @@ namespace Gameplay.Player.FSM
         [Inject]
         private void PlayerFSM(Player player, PlayerInput inputService)
         {
-            _instance = player;
+            //_instance = player;
             _inputService = inputService;
         }
 
-        private protected override void Initialize()
-        {
-            _instance.InitializeParametrs(
-                transform.GetComponent<Rigidbody2D>(),
-                transform.GetComponentInChildren<Animator>());
+        //private protected override void Initialize()
+        //{
+        //    //_instance.InitializeParametrs(
+        //    //    transform.GetComponent<Rigidbody2D>(),
+        //    //    transform.GetComponentInChildren<Animator>());
 
-            base.Initialize();
+        //    //base.Initialize();
 
-            InitializeInputs();
-        }
+        //    InitializeInputs();
+        //}
 
-        private protected override void InitializeStates()
-        {
-            //_runningStraightState = new StraightRunningState(this, _instance);
-            //_runningInclineState = new InclineRunningState(this, _instance);
-            //_jumpingState = new JumpingState(this, _instance);
-            //_deadState = new DeadState(this, _instance);
+        //private protected override void InitializeStates()
+        //{
+        //    //_runningStraightState = new StraightRunningState(this, _instance);
+        //    //_runningInclineState = new InclineRunningState(this, _instance);
+        //    //_jumpingState = new JumpingState(this, _instance);
+        //    //_deadState = new DeadState(this, _instance);
 
-            _initialState = _runningStraightState;
+        //    _initialState = _runningStraightState;
 
-            AddTranstions();
-        }
+        //    AddTranstions();
+        //}
 
         private void AddTranstions()
         {
-            _transitions.Add(new Transition(PlayerActions.RunIncline, _runningStraightState), _runningInclineState);
-            _transitions.Add(new Transition(PlayerActions.Run, _runningInclineState), _runningStraightState);
-            _transitions.Add(new Transition(PlayerActions.Jump, _runningStraightState), _jumpingState);
-            _transitions.Add(new Transition(PlayerActions.Land, _jumpingState), _runningStraightState);
-            _transitions.Add(new Transition(PlayerActions.Die, _runningStraightState), _deadState);
-            _transitions.Add(new Transition(PlayerActions.Die, _jumpingState), _deadState);
+            //_transitions.Add(new Transition(PlayerActions.RunIncline, _runningStraightState), _runningInclineState);
+            //_transitions.Add(new Transition(PlayerActions.Run, _runningInclineState), _runningStraightState);
+            //_transitions.Add(new Transition(PlayerActions.Jump, _runningStraightState), _jumpingState);
+            //_transitions.Add(new Transition(PlayerActions.Land, _jumpingState), _runningStraightState);
+            //_transitions.Add(new Transition(PlayerActions.Die, _runningStraightState), _deadState);
+            //_transitions.Add(new Transition(PlayerActions.Die, _jumpingState), _deadState);
         }
 
         public void InitializeInputs()
@@ -95,6 +94,6 @@ namespace Gameplay.Player.FSM
 
         private void OnTriggerEnter2D(Collider2D collision) => (_currentState as ITriggerEnter2D)?.OnTriggerEnter(collision);
 
-        private void OnValidate() => (_instance as IValidateTroughTransform)?.Validate(transform);
+        //private void OnValidate() => (_instance as IValidateTroughTransform)?.Validate(transform);
     }
 }

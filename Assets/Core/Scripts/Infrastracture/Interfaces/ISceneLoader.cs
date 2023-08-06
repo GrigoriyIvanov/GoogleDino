@@ -1,7 +1,9 @@
 ﻿using System;
-using UnityEngine.SceneManagement;
 
-public interface ISceneLoader
+namespace Core.Interfaces
 {
-    public void Load(Scene scene, Action onLoaded);
+    public interface ISceneLoader
+    {
+        public void Load(string sceneName, Action onLoaded = null);
+    }
 }
