@@ -5,6 +5,11 @@ namespace Main.StateMachine
         private protected IStateMachine<TActions> _fsm;
         private protected TObject _controlledObject;
 
+        public AbstractState()
+        {
+
+        }
+
         public AbstractState(IStateMachine<TActions> fsm, TObject instance)
         {
             _fsm = fsm;

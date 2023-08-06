@@ -1,20 +1,28 @@
+using Core;
 using Main.StateMachine;
+using Zenject;
 
 namespace Gameplay.Player.FSM
 {
     public class DeadState : AbstractState<PlayerActions, Player>
     {
+        private IGameManager _gameManager;
+        public DeadState() { }
         public DeadState(IStateMachine<PlayerActions> fsm, Player instance) : base(fsm, instance) { }
+
+        [Inject]
+        public void InitGameManager(IGameManager gameManager)
+        {
+            
+            _gameManager = gameManager;
+        }
 
         public override void EnterState()
         {
             _controlledObject.Animator.SetBool("Dead", true);
-            GameManager.MakeLost();
+            _gameManager.Lost();
         }
 
-        public override void ExitState()
-        {
-            throw new System.NotImplementedException();
-        }
+        public override void ExitState() => throw new System.NotImplementedException();
     }
 }

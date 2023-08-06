@@ -17,8 +17,6 @@ namespace Gameplay.Environment
 
                 _poolOfObjects.Add(tmp);
             }
-
-            Debug.Log(_poolOfObjects.Count);
         }
 
         public Transform GetObstacle()
@@ -32,8 +30,6 @@ namespace Gameplay.Environment
             pooledObject.gameObject.SetActive(true);
 
             _poolOfObjects.RemoveAt(pointer);
-
-            Debug.Log(pooledObject.gameObject.name);
 
             return pooledObject;
         }

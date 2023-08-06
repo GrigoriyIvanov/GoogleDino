@@ -3,6 +3,7 @@ using Core.Interfaces.EventFunctions.Updates;
 using Main.Interfaces.EventFunctions.Collisions;
 using Main.StateMachine;
 using UnityEngine;
+using Zenject;
 using static UnityEngine.InputSystem.InputAction;
 
 namespace Gameplay.Player.FSM
@@ -16,37 +17,43 @@ namespace Gameplay.Player.FSM
         Land
     }
 
-    public class PlayerStateMachine : AbstractFinitStateMashine<PlayerActions, Player>
+    public class PlayerStateMachine : AbstractFinitStateMashine<PlayerActions, Player>, PlayerInput.IMovementActions
     {
-        [SerializeField] private Player _player;
-
-        private PlayerInput _inputActions;
+        private PlayerInput _inputService;
 
         private bool isDownMove;
 
-        private IState _runningStraightState;
-        private IState _runningInclineState;
-        private IState _jumpingState;
-        private IState _deadState;
+        [Inject(Id = typeof(StraightRunningState))] private IState _runningStraightState;
+        [Inject(Id = typeof(InclineRunningState))] private IState _runningInclineState;
+        [Inject(Id = typeof(JumpingState))] private IState _jumpingState;
+        [Inject(Id = typeof(DeadState))] private IState _deadState;
 
         #region Initialize
+
+        [Inject]
+        private void PlayerFSM(Player player, PlayerInput inputService)
+        {
+            _instance = player;
+            _inputService = inputService;
+        }
+
         private protected override void Initialize()
         {
-            base.Initialize();
+            _instance.InitializeParametrs(
+                transform.GetComponent<Rigidbody2D>(),
+                transform.GetComponentInChildren<Animator>());
 
-            _player.InitializeParametrs();
+            base.Initialize();
 
             InitializeInputs();
         }
 
-        private void OnDisable() => DeinitializeInputs();
-
         private protected override void InitializeStates()
         {
-            _runningStraightState = new StraightRunningState(this, _player);
-            _runningInclineState = new InclineRunningState(this, _player);
-            _jumpingState = new JumpingState(this, _player);
-            _deadState = new DeadState(this, _player);
+            //_runningStraightState = new StraightRunningState(this, _instance);
+            //_runningInclineState = new InclineRunningState(this, _instance);
+            //_jumpingState = new JumpingState(this, _instance);
+            //_deadState = new DeadState(this, _instance);
 
             _initialState = _runningStraightState;
 
@@ -65,19 +72,8 @@ namespace Gameplay.Player.FSM
 
         public void InitializeInputs()
         {
-            _inputActions = new PlayerInput();
-            _inputActions.Enable();
-
-            _inputActions.Movement.Jump.performed += OnJumpPressed;
-            _inputActions.Movement.GoDown.performed += OnGoDownPressed;
-            _inputActions.Movement.GoDown.canceled += OnGoDownCanceled;
-        }
-
-        public void DeinitializeInputs()
-        {
-            _inputActions.Movement.Jump.performed -= OnJumpPressed;
-            _inputActions.Movement.GoDown.performed -= OnGoDownPressed;
-            _inputActions.Movement.GoDown.canceled -= OnGoDownCanceled;
+            _inputService.Enable();
+            _inputService.Movement.SetCallbacks(this);
         }
         #endregion
 
@@ -92,15 +88,13 @@ namespace Gameplay.Player.FSM
         }
 
         #region InputCallbacks
-        private void OnJumpPressed(CallbackContext callbackContext) => (_currentState as IExecuteJump)?.ExecuteJump();
+        public void OnJump(CallbackContext context) => (_currentState as IExecuteJump)?.ExecuteJump();
 
-        private void OnGoDownPressed(CallbackContext callbackContext) => isDownMove = true;
-
-        private void OnGoDownCanceled(CallbackContext callbackContext) => isDownMove = false;
+        public void OnGoDown(CallbackContext context) => isDownMove = context.performed;
         #endregion
 
         private void OnTriggerEnter2D(Collider2D collision) => (_currentState as ITriggerEnter2D)?.OnTriggerEnter(collision);
 
-        private void OnValidate() => (_player as IValidateTroughTransform).Validate(transform);
+        private void OnValidate() => (_instance as IValidateTroughTransform)?.Validate(transform);
     }
 }

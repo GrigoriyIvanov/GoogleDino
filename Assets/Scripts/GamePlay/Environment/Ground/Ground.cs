@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Gameplay.Environment
 {
-    public class Ground : MonoBehaviour
+    public class Ground : MonoBehaviour, ILostAction
     {
         [SerializeField] private Transform[] _groundUnits;
         private Transform _unitToSpawnOn;
@@ -25,5 +25,7 @@ namespace Gameplay.Environment
 
             return _unitToSpawnOn;
         }
+
+        public void OnLost() => _movement.enabled = false;
     }
 }

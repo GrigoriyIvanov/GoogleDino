@@ -18,12 +18,6 @@ namespace Gameplay.Environment
 
         private Vector3 _spawnPosition;
 
-        //public void Iniitalize(Ground ground, ObstaclePool obstaclePool /*SomeSettings*/) 
-        //{
-        //    _ground = ground;
-        //    _obstaclePool = obstaclePool; 
-        //}
-
         private void Awake()
         {
             _obstaclePool = new ObstaclePool(_obstacles);

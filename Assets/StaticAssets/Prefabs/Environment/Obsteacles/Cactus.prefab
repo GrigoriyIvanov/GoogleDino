@@ -7,9 +7,33 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1683695322098509802, guid: 7f40f0f4fca5bf6459d0a9f9cd6126fe, type: 3}
+      propertyPath: m_Size.x
+      value: 0.37
+      objectReference: {fileID: 0}
+    - target: {fileID: 1683695322098509802, guid: 7f40f0f4fca5bf6459d0a9f9cd6126fe, type: 3}
+      propertyPath: m_Size.y
+      value: 0.91
+      objectReference: {fileID: 0}
+    - target: {fileID: 1683695322098509802, guid: 7f40f0f4fca5bf6459d0a9f9cd6126fe, type: 3}
+      propertyPath: m_Offset.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1683695322098509802, guid: 7f40f0f4fca5bf6459d0a9f9cd6126fe, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 0.51
+      objectReference: {fileID: 0}
+    - target: {fileID: 1683695322098509802, guid: 7f40f0f4fca5bf6459d0a9f9cd6126fe, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 1.0223141
+      objectReference: {fileID: 0}
+    - target: {fileID: 1731042785358644252, guid: 7f40f0f4fca5bf6459d0a9f9cd6126fe, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.3
+      objectReference: {fileID: 0}
     - target: {fileID: 4611828037342595068, guid: 7f40f0f4fca5bf6459d0a9f9cd6126fe, type: 3}
       propertyPath: m_Name
-      value: Obstacle (1)
+      value: Cactus
       objectReference: {fileID: 0}
     - target: {fileID: 4611828037342595069, guid: 7f40f0f4fca5bf6459d0a9f9cd6126fe, type: 3}
       propertyPath: m_RootOrder
@@ -87,5 +111,9 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8837168696261509585, guid: 7f40f0f4fca5bf6459d0a9f9cd6126fe, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 1211768251, guid: 9288f9f2556d3e648b660ebf0f978f2c, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7f40f0f4fca5bf6459d0a9f9cd6126fe, type: 3}

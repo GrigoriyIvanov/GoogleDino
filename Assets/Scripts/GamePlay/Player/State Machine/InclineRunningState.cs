@@ -2,6 +2,7 @@ namespace Gameplay.Player.FSM
 {
     public class InclineRunningState : RunningState, ICancelDownMove
     {
+        public InclineRunningState() { }
         public InclineRunningState(PlayerStateMachine fsm, Player instance) : base(fsm, instance) { }
 
         public override void EnterState() => _controlledObject.Animator.SetBool("InclineRun", true);

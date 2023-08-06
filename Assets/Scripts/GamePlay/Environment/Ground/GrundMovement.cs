@@ -12,6 +12,8 @@ namespace Gameplay.Environment
         private const float _speedIncrement = 0.001f;
         private const float _lengthOfGroundUnit = 24f;
 
+        public bool enabled = true;
+
         public GrundMovement(Transform[] groundUnits)
         {
             _groundUnits = groundUnits;
@@ -21,6 +23,9 @@ namespace Gameplay.Environment
 
         public void Move()
         {
+            if (!enabled)
+                return;
+
             for (int i = 0; i < _unitsAmount; i++)
             {
                 _groundUnits[i].position = Vector2.MoveTowards(
