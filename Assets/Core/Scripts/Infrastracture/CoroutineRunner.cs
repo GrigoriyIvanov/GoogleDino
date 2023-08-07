@@ -5,6 +5,7 @@ namespace Core.Inftastracture
 {
     public class CoroutineRunner : MonoBehaviour, ICoroutineRunner
     {
-        private void Awake() => DontDestroyOnLoad(this);
+        private void Awake() => 
+            DontDestroyOnLoad(this);
     }
 }

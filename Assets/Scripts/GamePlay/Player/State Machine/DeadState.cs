@@ -1,5 +1,6 @@
 using Core.Interfaces;
 using Core.StateMachine;
+using UnityEngine;
 using Zenject;
 
 namespace Gameplay.Player.FSM
@@ -8,11 +9,15 @@ namespace Gameplay.Player.FSM
     {
         private IGameManager _gameManager;
 
-        public DeadState(IStateMachine<PlayerActions> fsm, Player instance) : base(fsm, instance) { }
+        public DeadState(IStateMachine<PlayerActions> fsm, Player instance, IGameManager gameManager) : base(fsm, instance) 
+        {
+            _gameManager = gameManager;
+        }
 
         [Inject]
         public void InitGameManager(IGameManager gameManager)
         {
+            Debug.Log("InitGameManager");
             _gameManager = gameManager;
         }
 

@@ -1,3 +1,5 @@
+using Zenject;
+
 namespace Core.StateMachine
 {
     public abstract class AbstractState<TActions, TObject> : IState where TActions : struct where TObject : class

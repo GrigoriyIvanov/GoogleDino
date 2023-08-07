@@ -1,6 +1,8 @@
+using Core.Interfaces;
 using Core.Interfaces.EventFunctions.Updates;
 using Core.StateMachine;
 using Main.Interfaces.EventFunctions.Collisions;
+using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 using static UnityEngine.InputSystem.InputAction;
@@ -16,58 +18,39 @@ namespace Gameplay.Player.FSM
         Land
     }
 
-    public class PlayerStateMachine : AbstractFinitStateMashine<PlayerActions>, PlayerInput.IMovementActions
+    public class PlayerStateMachine : AbstractFinitStateMashine<PlayerActions>, PlayerInput.IMovementActions, IFixedUpdate, ITriggerEnter2D
     {
         private PlayerInput _inputService;
 
         private bool isDownMove;
 
-        [Inject(Id = typeof(StraightRunningState))] private IState _runningStraightState;
-        [Inject(Id = typeof(InclineRunningState))] private IState _runningInclineState;
-        [Inject(Id = typeof(JumpingState))] private IState _jumpingState;
-        [Inject(Id = typeof(DeadState))] private IState _deadState;
+        public PlayerStateMachine(Player player, PlayerInput inputService, IGameManager gameManager)
+        {
+            _states = new Dictionary<System.Type, IState>()
+            {
+                [typeof(StraightRunningState)] = new StraightRunningState(this, player),
+                [typeof(InclineRunningState)] = new InclineRunningState(this, player),
+                [typeof(JumpingState)] = new JumpingState(this, player),
+                [typeof(DeadState)] = new DeadState(this, player, gameManager),
+            };
+
+            _transitions = new Dictionary<Transition, System.Type>()
+            {
+                [new Transition(PlayerActions.RunIncline, typeof(StraightRunningState))] = typeof(InclineRunningState),
+                [new Transition(PlayerActions.Run, typeof(InclineRunningState))] = typeof(StraightRunningState),
+                [new Transition(PlayerActions.Jump, typeof(StraightRunningState))] = typeof(JumpingState),
+                [new Transition(PlayerActions.Land, typeof(JumpingState))] = typeof(StraightRunningState),
+                [new Transition(PlayerActions.Die, typeof(StraightRunningState))] = typeof(DeadState),
+                [new Transition(PlayerActions.Die, typeof(JumpingState))] = typeof(DeadState),
+            };
+
+            _inputService = inputService;
+            InitializeInputs();
+
+            _initialState = _states[typeof(StraightRunningState)];
+        }
 
         #region Initialize
-
-        [Inject]
-        private void PlayerFSM(Player player, PlayerInput inputService)
-        {
-            //_instance = player;
-            _inputService = inputService;
-        }
-
-        //private protected override void Initialize()
-        //{
-        //    //_instance.InitializeParametrs(
-        //    //    transform.GetComponent<Rigidbody2D>(),
-        //    //    transform.GetComponentInChildren<Animator>());
-
-        //    //base.Initialize();
-
-        //    InitializeInputs();
-        //}
-
-        //private protected override void InitializeStates()
-        //{
-        //    //_runningStraightState = new StraightRunningState(this, _instance);
-        //    //_runningInclineState = new InclineRunningState(this, _instance);
-        //    //_jumpingState = new JumpingState(this, _instance);
-        //    //_deadState = new DeadState(this, _instance);
-
-        //    _initialState = _runningStraightState;
-
-        //    AddTranstions();
-        //}
-
-        private void AddTranstions()
-        {
-            //_transitions.Add(new Transition(PlayerActions.RunIncline, _runningStraightState), _runningInclineState);
-            //_transitions.Add(new Transition(PlayerActions.Run, _runningInclineState), _runningStraightState);
-            //_transitions.Add(new Transition(PlayerActions.Jump, _runningStraightState), _jumpingState);
-            //_transitions.Add(new Transition(PlayerActions.Land, _jumpingState), _runningStraightState);
-            //_transitions.Add(new Transition(PlayerActions.Die, _runningStraightState), _deadState);
-            //_transitions.Add(new Transition(PlayerActions.Die, _jumpingState), _deadState);
-        }
 
         public void InitializeInputs()
         {
@@ -76,7 +59,7 @@ namespace Gameplay.Player.FSM
         }
         #endregion
 
-        private void FixedUpdate()
+        public void FixedUpdate()
         {
             (_currentState as IFixedUpdate)?.FixedUpdate();
 
@@ -86,14 +69,15 @@ namespace Gameplay.Player.FSM
                 (_currentState as ICancelDownMove)?.CancelDownMove();
         }
 
+        public void OnTriggerEnter(Collider2D collision) =>
+            (_currentState as ITriggerEnter2D)?.OnTriggerEnter(collision);
+
         #region InputCallbacks
-        public void OnJump(CallbackContext context) => (_currentState as IExecuteJump)?.ExecuteJump();
+        public void OnJump(CallbackContext context) =>
+            (_currentState as IExecuteJump)?.ExecuteJump();
 
-        public void OnGoDown(CallbackContext context) => isDownMove = context.performed;
+        public void OnGoDown(CallbackContext context) =>
+            isDownMove = context.performed;
         #endregion
-
-        private void OnTriggerEnter2D(Collider2D collision) => (_currentState as ITriggerEnter2D)?.OnTriggerEnter(collision);
-
-        //private void OnValidate() => (_instance as IValidateTroughTransform)?.Validate(transform);
     }
 }
