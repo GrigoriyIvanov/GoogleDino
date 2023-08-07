@@ -1,32 +1,36 @@
-using System;
 using UnityEngine;
+using Zenject;
 
 namespace Gameplay.Player
 {
-    [Serializable]
-    public class Player: Core.Interfaces.IValidateTroughTransform
+    public class Player
     {
-        [SerializeField] private PlayerMovementSettings _movementSettings;
+        private Rigidbody2D _rigidbody;
+        private Animator _animator;
 
-        [SerializeField, HideInInspector] private Rigidbody2D _rigidbody;
-        [SerializeField, HideInInspector] private Animator _animator;
+        private PlayerMovementSettings _movementSettings;
 
         private GroundChecker _groundChecker;
 
-        public Rigidbody2D Rigidbody => _rigidbody;
         public Animator Animator => _animator;
         public bool IsGrounded => _groundChecker.isGrounded;
 
-        public void InitializeParametrs() => _groundChecker = new GroundChecker(_rigidbody.transform);
+        [Inject]
+        public void Construct(PlayerMovementSettings movementSettings) =>
+            _movementSettings = movementSettings;
 
-        public void ProduceJump() => _rigidbody.velocity = Vector2.up * _movementSettings.JumpForce;
-
-        public void ProduceDownJump() => _rigidbody.velocity = -Vector2.up * _movementSettings.JumpForce;
-
-        public void Validate(Transform transform)
+        public void SetComponents(Rigidbody2D rigidbody, Animator animator)
         {
-            if (_rigidbody == null) _rigidbody = transform.GetComponentInChildren<Rigidbody2D>();
-            if (_animator == null) _animator = transform.GetComponentInChildren<Animator>();
+            _rigidbody = rigidbody;
+            _animator = animator;
+            _groundChecker = new GroundChecker(_rigidbody.transform);
         }
+
+        public void ProduceJump() => MakeJump();
+
+        public void ProduceDownJump() => MakeJump(-1);
+
+        public void MakeJump(float directionY = 1) =>
+            _rigidbody.velocity = directionY * Vector2.up * _movementSettings.JumpForce;
     }
 }

@@ -1,20 +1,23 @@
-using Main.StateMachine;
+using Core.Inftastracture.GameManagment.FSM;
+using Core.StateMachine;
 
 namespace Gameplay.Player.FSM
 {
     public class DeadState : AbstractState<PlayerActions, Player>
     {
-        public DeadState(IStateMachine<PlayerActions> fsm, Player instance) : base(fsm, instance) { }
+        private IStateMachine<GameActions> _gameFSM;
+
+        public DeadState(IStateMachine<PlayerActions> fsm, Player instance, IStateMachine<GameActions> gameFSM) : base(fsm, instance)
+        {
+            _gameFSM = gameFSM;
+        }
 
         public override void EnterState()
         {
             _controlledObject.Animator.SetBool("Dead", true);
-            GameManager.MakeLost();
+            _gameFSM.ActionRespond(GameActions.Lost);
         }
 
-        public override void ExitState()
-        {
-            throw new System.NotImplementedException();
-        }
+        public override void ExitState() => throw new System.NotImplementedException();
     }
 }

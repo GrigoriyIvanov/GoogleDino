@@ -5,8 +5,7 @@ namespace Gameplay.Player.FSM
     public class JumpingState : AliveState, IFixedUpdate, IExecuteDownMove
     {
         private bool isJumpedOnThisFrame;
-
-        public JumpingState(Main.StateMachine.IStateMachine<PlayerActions> fsm, Player instance) : base(fsm, instance) { }
+        public JumpingState(Core.StateMachine.IStateMachine<PlayerActions> fsm, Player instance) : base(fsm, instance) { }
 
         public override void EnterState()
         {

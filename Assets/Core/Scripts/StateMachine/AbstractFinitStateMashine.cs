@@ -1,57 +1,38 @@
 using System;
 using System.Collections.Generic;
-using UnityEngine;
 
-namespace Main.StateMachine
+namespace Core.StateMachine
 {
-    public abstract class AbstractFinitStateMashine<TActions, TControlledInstance> : MonoBehaviour, IStateMachine<TActions> where TActions : struct where TControlledInstance : class
+    public abstract class AbstractFinitStateMashine<TActions> : IStateMachine<TActions> where TActions : struct
     {
         public class Transition
         {
             public TActions action;
-            public IState currentState;
+            public Type currentState;
 
-            public Transition(TActions action, IState currentState)
+            public Transition(TActions action, Type currentState)
             {
                 this.action = action;
                 this.currentState = currentState;
             }
 
-            public override int GetHashCode()
-            {
-                return 17 + 31 * this.currentState.GetHashCode() + 31 * this.action.GetHashCode();
-            }
+            public override int GetHashCode() =>
+                17 + 31 * this.currentState.GetHashCode() + 31 * this.action.GetHashCode();
 
             public override bool Equals(object obj)
             {
                 Transition other = obj as Transition;
-                return other != null && this.currentState.Equals(other.currentState) && this.action.Equals(other.action);
+                return obj as Transition != null && this.currentState.Equals(other.currentState) && this.action.Equals(other.action);
             }
         }
-
-        private protected TControlledInstance _instance;
 
         private protected IState _currentState;
         private protected IState _initialState;
 
-        private protected readonly Dictionary<Transition, IState> _transitions = new Dictionary<Transition, IState>();
+        private protected Dictionary<Type, IState> _states = new Dictionary<Type, IState>();
+        private protected Dictionary<Transition, Type> _transitions = new Dictionary<Transition, Type>();
 
-        #region Initialize
-        private void Awake()
-        {
-            Initialize();
-        }
-
-        private protected virtual void Initialize()
-        {
-            InitializeStates();
-            SetInitialState();
-        }
-
-        private protected abstract void InitializeStates();
-
-        private void SetInitialState() => SetState(_initialState);
-        #endregion
+        public void SetInitialState() => SetState(_initialState);
 
         private void SetState(IState newState)
         {
@@ -65,10 +46,10 @@ namespace Main.StateMachine
 
         public void ActionRespond(TActions action)
         {
-            var trans = new Transition(action, _currentState);
+            var trans = new Transition(action, _currentState.GetType());
 
-            if (_transitions.TryGetValue(trans, out IState state))
-                SetState(state);
+            if (_transitions.TryGetValue(trans, out Type stateType))
+                SetState(_states[stateType]);
         }
     }
 }

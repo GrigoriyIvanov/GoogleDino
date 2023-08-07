@@ -1,5 +1,5 @@
+using Core.StateMachine;
 using Main.Interfaces.EventFunctions.Collisions;
-using Main.StateMachine;
 using UnityEngine;
 
 namespace Gameplay.Player.FSM

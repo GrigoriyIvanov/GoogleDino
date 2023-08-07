@@ -67,5 +67,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cactus 2
       objectReference: {fileID: 0}
+    - target: {fileID: 3598318101976021142, guid: 78ad64be26c1bb54c9111605afddd0cd, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -1716126801, guid: 9288f9f2556d3e648b660ebf0f978f2c, type: 3}
+    - target: {fileID: 6634236411884527277, guid: 78ad64be26c1bb54c9111605afddd0cd, type: 3}
+      propertyPath: m_Size.x
+      value: 0.67
+      objectReference: {fileID: 0}
+    - target: {fileID: 6634236411884527277, guid: 78ad64be26c1bb54c9111605afddd0cd, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 78ad64be26c1bb54c9111605afddd0cd, type: 3}

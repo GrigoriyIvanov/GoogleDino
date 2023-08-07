@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Main.Interfaces.EventFunctions.Collisions
+namespace Core.Interfaces.EventFunctions.Collisions
 {
     public interface ICollisionEnter
     {
