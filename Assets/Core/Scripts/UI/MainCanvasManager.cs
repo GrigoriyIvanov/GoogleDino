@@ -32,6 +32,7 @@ namespace Core.UI
 
             winContainer.AddCallback(this);
             pouseContainer.AddCallback(this);
+            lostContainer.AddCallback(this);
             startContainer.AddCallback(this);
             pouseContainer.AddCallback(this);
         }

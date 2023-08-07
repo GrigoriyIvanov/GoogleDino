@@ -1,10 +1,9 @@
-using Core.Interfaces;
+using Core.Inftastracture.GameManagment.FSM;
 using Core.Interfaces.EventFunctions.Updates;
 using Core.StateMachine;
 using Main.Interfaces.EventFunctions.Collisions;
 using System.Collections.Generic;
 using UnityEngine;
-using Zenject;
 using static UnityEngine.InputSystem.InputAction;
 
 namespace Gameplay.Player.FSM
@@ -24,14 +23,14 @@ namespace Gameplay.Player.FSM
 
         private bool isDownMove;
 
-        public PlayerStateMachine(Player player, PlayerInput inputService, IGameManager gameManager)
+        public PlayerStateMachine(Player player, PlayerInput inputService, IStateMachine<GameActions> gameFSM)
         {
             _states = new Dictionary<System.Type, IState>()
             {
                 [typeof(StraightRunningState)] = new StraightRunningState(this, player),
                 [typeof(InclineRunningState)] = new InclineRunningState(this, player),
                 [typeof(JumpingState)] = new JumpingState(this, player),
-                [typeof(DeadState)] = new DeadState(this, player, gameManager),
+                [typeof(DeadState)] = new DeadState(this, player, gameFSM),
             };
 
             _transitions = new Dictionary<Transition, System.Type>()

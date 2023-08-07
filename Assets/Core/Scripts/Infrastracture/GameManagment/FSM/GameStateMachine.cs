@@ -30,7 +30,8 @@ namespace Core.Inftastracture.GameManagment.FSM
             {
                 [new Transition(GameActions.EnterToGameplay, typeof(BootStrapState))] = typeof(GamePlayRunningState),
                 [new Transition(GameActions.Pouse, typeof(GamePlayRunningState))] = typeof(GamePousedState),
-                [new Transition(GameActions.Pouse, typeof(GamePousedState))] = typeof(GamePlayRunningState),
+                [new Transition(GameActions.Start, typeof(GamePousedState))] = typeof(GamePlayRunningState),
+                [new Transition(GameActions.Lost, typeof(GamePlayRunningState))] = typeof(LostState),
             };
 
             _initialState = _states[typeof(BootStrapState)];

@@ -1,7 +1,6 @@
 using Core.Interfaces;
 using Core.StateMachine;
 
-
 namespace Core.Inftastracture.GameManagment.FSM
 {
     public class LostState : AbstractState<GameActions, IGameManager>
@@ -11,9 +10,6 @@ namespace Core.Inftastracture.GameManagment.FSM
         public override void EnterState() =>
             _controlledObject.Lost();
 
-        public override void ExitState()
-        {
-
-        }
+        public override void ExitState() { }
     }
 }
