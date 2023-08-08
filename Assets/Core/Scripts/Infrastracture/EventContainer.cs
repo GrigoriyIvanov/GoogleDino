@@ -11,8 +11,14 @@ namespace Core.Inftastracture
         public void AddCallback(T callBack) =>
             _eventCallbacks.Add(callBack);
 
-        public void Clear() =>
-            _eventCallbacks.Clear();
+        public void Clear()
+        {
+            for (int i = 0; i < _eventCallbacks.Count; i++)
+            {
+                if (_eventCallbacks[i].Equals(null))
+                    _eventCallbacks.RemoveAt(i);
+            }
+        }
 
         public void ExecuteEvent(Action<T> action) =>
             _eventCallbacks.ForEach((T callback) => action(callback));

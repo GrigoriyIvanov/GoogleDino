@@ -5,24 +5,22 @@ using Zenject;
 
 namespace Core.Inftastracture.GameManagment
 {
-    public class GameManager : IGameActionsManager
+    public class GameActionsManager : IGameActionsManager
     {
         private IEventContainer<IWin> _winListenersContainer;
         private IEventContainer<ILost> _lostListenersContainer;
         private IEventContainer<IStartPlay> _startListenersContainer;
-        private IEventContainer<IPouse> _pouseListenersContainer;
 
         [Inject]
-        public GameManager(
+        public GameActionsManager(
             IEventContainer<IWin> winListenersContainer,
             IEventContainer<ILost> lostListenersContainer,
-            IEventContainer<IStartPlay> startListenersContainer,
-            IEventContainer<IPouse> pouseListenersContainer)
+            IEventContainer<IStartPlay> startListenersContainer
+            )
         {
             _winListenersContainer = winListenersContainer;
             _lostListenersContainer = lostListenersContainer;
             _startListenersContainer = startListenersContainer;
-            _pouseListenersContainer = pouseListenersContainer;
         }
 
         public void Win() =>
@@ -31,21 +29,21 @@ namespace Core.Inftastracture.GameManagment
         public void Lost() =>
             _lostListenersContainer.ExecuteEvent((lostingObject) => lostingObject.OnLost());
 
-        public void Restart() =>
-            throw new System.NotImplementedException();
+        public void Restart() { }
 
         public void StartPlay()
         {
-            Debug.Log("StartPlay");
+            _winListenersContainer.Clear();
+            _lostListenersContainer.Clear();
+            _startListenersContainer.Clear();
+
             _startListenersContainer.ExecuteEvent((startingObject) => startingObject.OnStartPlay());
             Time.timeScale = 1;
         }
 
         public void Pouse()
         {
-            Debug.Log("Pouse");
-            _pouseListenersContainer.ExecuteEvent((pousingObject) => pousingObject.OnPouse());
-            Time.timeScale = 0;
+            
         }
     }
 }

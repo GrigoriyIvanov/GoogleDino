@@ -50,6 +50,8 @@ namespace Core.StateMachine
 
             if (_transitions.TryGetValue(trans, out Type stateType))
                 SetState(_states[stateType]);
+            //else
+            //    throw new InvalidOperationException("Attemp to make invalid transition");
         }
     }
 }

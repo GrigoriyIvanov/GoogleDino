@@ -15,7 +15,7 @@ namespace Core.Inftastracture.Installers
             Container.BindInterfacesTo<CoroutineRunner>().FromInstance(coroutineRunner).AsSingle();
 
             Container.BindInterfacesTo<SceneLoader>().AsSingle();
-            Container.BindInterfacesTo<GameManager>().AsSingle();
+            Container.BindInterfacesTo<GameActionsManager>().AsSingle();
 
             Container.BindInterfacesTo<GameStateMachine>().AsSingle();
         }

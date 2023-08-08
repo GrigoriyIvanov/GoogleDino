@@ -16,9 +16,13 @@ namespace Core.UI.Panels
         public void Construct(IStateMachine<GameActions> gameFSM) =>
             _gameFSM = gameFSM;
 
-        private void Awake()
-        {
+        private void OnEnable() =>
+            _restart.onClick.AddListener(MakeRestart);
 
-        }
+        private void OnDisable() =>
+            _restart.onClick.RemoveListener(MakeRestart);
+
+        private void MakeRestart() =>
+            _gameFSM.ActionRespond(GameActions.Reastart);
     }
 }
