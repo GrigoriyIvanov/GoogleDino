@@ -3,9 +3,9 @@ using Core.StateMachine;
 
 namespace Core.Inftastracture.GameManagment.FSM
 {
-    public class GamePousedState : AbstractState<GameActions, IGameManager>
+    public class GamePousedState : AbstractState<GameActions, IGameActionsManager>
     {
-        public GamePousedState(IStateMachine<GameActions> fsm, IGameManager instance) : base(fsm, instance) { }
+        public GamePousedState(IStateMachine<GameActions> fsm, IGameActionsManager instance) : base(fsm, instance) { }
 
         public override void EnterState() =>
             _controlledObject.Pouse();

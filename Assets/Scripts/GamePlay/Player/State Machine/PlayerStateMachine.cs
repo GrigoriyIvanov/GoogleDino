@@ -41,6 +41,7 @@ namespace Gameplay.Player.FSM
                 [new Transition(PlayerActions.Land, typeof(JumpingState))] = typeof(StraightRunningState),
                 [new Transition(PlayerActions.Die, typeof(StraightRunningState))] = typeof(DeadState),
                 [new Transition(PlayerActions.Die, typeof(JumpingState))] = typeof(DeadState),
+                [new Transition(PlayerActions.Die, typeof(InclineRunningState))] = typeof(DeadState),
             };
 
             _inputService = inputService;

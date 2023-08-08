@@ -16,7 +16,7 @@ namespace Core.Inftastracture.GameManagment.FSM
 
     public class GameStateMachine : AbstractFinitStateMashine<GameActions>
     {
-        public GameStateMachine(IGameManager gameManager, ISceneLoader sceneLoader)
+        public GameStateMachine(IGameActionsManager gameManager, ISceneLoader sceneLoader)
         {
             _states = new Dictionary<System.Type, IState>()
             {

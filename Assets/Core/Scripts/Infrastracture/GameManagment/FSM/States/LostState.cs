@@ -3,9 +3,9 @@ using Core.StateMachine;
 
 namespace Core.Inftastracture.GameManagment.FSM
 {
-    public class LostState : AbstractState<GameActions, IGameManager>
+    public class LostState : AbstractState<GameActions, IGameActionsManager>
     {
-        public LostState(IStateMachine<GameActions> fsm, IGameManager instance) : base(fsm, instance) { }
+        public LostState(IStateMachine<GameActions> fsm, IGameActionsManager instance) : base(fsm, instance) { }
 
         public override void EnterState() =>
             _controlledObject.Lost();

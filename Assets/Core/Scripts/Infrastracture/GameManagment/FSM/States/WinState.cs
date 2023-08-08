@@ -3,9 +3,9 @@ using Core.StateMachine;
 
 namespace Core.Inftastracture.GameManagment.FSM
 {
-    public class WinState : AbstractState<GameActions, IGameManager>
+    public class WinState : AbstractState<GameActions, IGameActionsManager>
     {
-        public WinState(IStateMachine<GameActions> fsm, IGameManager instance) : base(fsm, instance)
+        public WinState(IStateMachine<GameActions> fsm, IGameActionsManager instance) : base(fsm, instance)
         {
         }
 

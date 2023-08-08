@@ -2,7 +2,7 @@ using System;
 
 namespace Core.Interfaces
 {
-    public interface IGameManager
+    public interface IGameActionsManager
     {
         public void StartPlay();
         public void Win();

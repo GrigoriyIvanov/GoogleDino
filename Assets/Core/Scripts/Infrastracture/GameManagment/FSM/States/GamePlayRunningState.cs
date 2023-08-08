@@ -3,9 +3,9 @@ using Core.StateMachine;
 
 namespace Core.Inftastracture.GameManagment.FSM
 {
-    public class GamePlayRunningState : AbstractState<GameActions, IGameManager>
+    public class GamePlayRunningState : AbstractState<GameActions, IGameActionsManager>
     {
-        public GamePlayRunningState(IStateMachine<GameActions> fsm, IGameManager instance) : base(fsm, instance) { }
+        public GamePlayRunningState(IStateMachine<GameActions> fsm, IGameActionsManager instance) : base(fsm, instance) { }
 
         public override void EnterState()
         {

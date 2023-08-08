@@ -5,7 +5,7 @@ using Zenject;
 
 namespace Core.Inftastracture.GameManagment
 {
-    public class GameManager : IGameManager
+    public class GameManager : IGameActionsManager
     {
         private IEventContainer<IWin> _winListenersContainer;
         private IEventContainer<ILost> _lostListenersContainer;

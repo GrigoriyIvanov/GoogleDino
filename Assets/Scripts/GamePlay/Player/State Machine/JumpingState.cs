@@ -28,6 +28,7 @@ namespace Gameplay.Player.FSM
                 _fsm.ActionRespond(PlayerActions.Land);
         }
 
-        public void ExecuteDownMove() => _controlledObject.ProduceDownJump();
+        public void ExecuteDownMove() => 
+            _controlledObject.ProduceDownJump();
     }
 }
