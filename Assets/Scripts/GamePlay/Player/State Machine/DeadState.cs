@@ -14,7 +14,7 @@ namespace Gameplay.Player.FSM
 
         public override void EnterState()
         {
-            _controlledObject.Animator.SetBool("Dead", true);
+            _controlledObject.MakeDead();
             _gameFSM.ActionRespond(GameActions.Lost);
         }
 

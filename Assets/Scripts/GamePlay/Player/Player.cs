@@ -30,6 +30,12 @@ namespace Gameplay.Player
 
         public void ProduceDownJump() => MakeJump(-1);
 
+        public void MakeDead()
+        {
+            Animator.SetBool("Dead", true);
+            _rigidbody.simulated = false;
+        }
+
         public void MakeJump(float directionY = 1) =>
             _rigidbody.velocity = directionY * Vector2.up * _movementSettings.JumpForce;
     }

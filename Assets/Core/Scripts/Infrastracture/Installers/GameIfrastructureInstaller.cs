@@ -11,8 +11,7 @@ namespace Core.Inftastracture.Installers
 
         public override void InstallBindings()
         {
-            CoroutineRunner coroutineRunner = Container.InstantiatePrefabForComponent<CoroutineRunner>(_coroutineRunner);
-            Container.BindInterfacesTo<CoroutineRunner>().FromInstance(coroutineRunner).AsSingle();
+            Container.BindInterfacesTo<CoroutineRunner>().FromNewComponentOnNewPrefab(_coroutineRunner).AsSingle();
 
             Container.BindInterfacesTo<SceneLoader>().AsSingle();
             Container.BindInterfacesTo<GameActionsManager>().AsSingle();

@@ -15,7 +15,6 @@ public class PlayerInstaller : MonoInstaller
         Container.Bind<PlayerInput>().FromNew().AsSingle();
         Container.BindInterfacesTo<PlayerStateMachine>().FromNew().AsSingle();
 
-        var playerInstance = Container.InstantiatePrefabForComponent<PlayerRunner>(_playerRunner, _spawnPosition.position, Quaternion.identity, null);
-        Container.Bind<PlayerRunner>().FromInstance(playerInstance).AsSingle();
+        Container.InstantiatePrefabForComponent<PlayerRunner>(_playerRunner, _spawnPosition.position, Quaternion.identity, null);
     }
 }

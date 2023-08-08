@@ -5,24 +5,21 @@ using Zenject;
 
 namespace Gameplay.Environment
 {
-    public class Ground : MonoBehaviour, ILost
+    public class Ground : MonoBehaviour
     {
         [SerializeField] private Transform[] _groundUnits;
         private Transform _unitToSpawnOn;
 
-        private GrundMovement _movement;
+        private GroundMovement _movement;
 
         public Transform UnitToSpawnOn => GetMostRighPlatform();
 
         [Inject]
-        public void Constructor(IEventContainer<ILost> lostEventContainer)
-        {
-            lostEventContainer.AddCallback(this);
-        }
+        public void Constructor(IEventContainer<ILost> lostEventContainer, GroundMovement movement) => 
+            _movement = movement; 
 
-        private void Awake() => _movement = new GrundMovement(_groundUnits);
-
-        private void FixedUpdate() => _movement.Move();
+        private void FixedUpdate() => 
+            _movement.Move(_groundUnits);
 
         private Transform GetMostRighPlatform()
         {
@@ -34,7 +31,5 @@ namespace Gameplay.Environment
 
             return _unitToSpawnOn;
         }
-
-        public void OnLost() => _movement.enabled = false;
     }
 }
