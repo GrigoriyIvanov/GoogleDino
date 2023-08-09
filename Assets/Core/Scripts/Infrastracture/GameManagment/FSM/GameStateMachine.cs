@@ -11,23 +11,30 @@ namespace Core.Inftastracture.GameManagment.FSM
         Start,
         Lost,
         Pouse,
-        Reastart
+        Reastart,
+        LoadData
     }
 
     public class GameStateMachine : AbstractFinitStateMashine<GameActions>
     {
-        public GameStateMachine(IGameActionsManager gameManager, ISceneLoader sceneLoader)
+        public GameStateMachine(
+            IGameActionsManager gameManager,
+            ISceneLoader sceneLoader, 
+            ISaveLoadService saveLoadService, 
+            IPlayerProgressHandler playerProgressHandler)
         {
             _states = new Dictionary<System.Type, IState>()
             {
-                [typeof(LoadingState)] = new LoadingState(this, sceneLoader, "Main"),
+                [typeof(LoadingState)] = new LoadingState(this, sceneLoader),
                 [typeof(GamePlayRunningState)] = new GamePlayRunningState(this, gameManager),
                 [typeof(LostState)] = new LostState(this, gameManager),
+                [typeof(LoadDataState)] = new LoadDataState(this, sceneLoader, saveLoadService, playerProgressHandler),
             };
 
             _transitions = new Dictionary<Transition, System.Type>()
             {
-                [new Transition(GameActions.EnterToGameplay, typeof(LoadingState))] = typeof(GamePlayRunningState),
+                [new Transition(GameActions.LoadData, typeof(LoadingState))] = typeof(LoadDataState),
+                [new Transition(GameActions.EnterToGameplay, typeof(LoadDataState))] = typeof(GamePlayRunningState),
                 [new Transition(GameActions.Lost, typeof(GamePlayRunningState))] = typeof(LostState),
                 [new Transition(GameActions.Reastart, typeof(LostState))] = typeof(LoadingState),
             };

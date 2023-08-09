@@ -6,18 +6,11 @@ namespace Core.Inftastracture.GameManagment.FSM
 {
     internal class LoadingState : AbstractState<GameActions, ISceneLoader>
     {
-        private string _startSceneName;
-
-        public LoadingState(IStateMachine<GameActions> fsm, ISceneLoader instance, string startSceneName) : base(fsm, instance)
-            => _startSceneName = startSceneName;
-
-        public override void EnterState()
-        {
-            _controlledObject.Load(
-                _startSceneName,
-                () => _fsm.ActionRespond(GameActions.EnterToGameplay));
-        }
-
+        public LoadingState(IStateMachine<GameActions> fsm, ISceneLoader instance) : base(fsm, instance) { }
+        
+        public override void EnterState() => 
+            _fsm.ActionRespond(GameActions.LoadData);
+    
         public override void ExitState()
         {
             Debug.Log("GameIsLoaded");

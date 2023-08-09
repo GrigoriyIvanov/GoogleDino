@@ -16,6 +16,9 @@ namespace Core.Inftastracture.Installers
             Container.BindInterfacesTo<SceneLoader>().AsSingle();
             Container.BindInterfacesTo<GameActionsManager>().AsSingle();
 
+            Container.BindInterfacesTo<PlayerProgressHandler>().AsSingle();
+            Container.BindInterfacesTo<SaveLoadService>().AsSingle();
+
             Container.BindInterfacesTo<GameStateMachine>().AsSingle();
         }
     }
