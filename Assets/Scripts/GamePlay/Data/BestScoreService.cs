@@ -1,6 +1,5 @@
 using Core.Interfaces;
 using Core.Interfaces.EventFunctions;
-using UnityEngine;
 using Zenject;
 
 public class BestScoreService : ILost
@@ -28,12 +27,10 @@ public class BestScoreService : ILost
 
     private void CheckAndSave()
     {
-        if (_pointsCounter.Score > _playerProgressHandler.PlayerProgress.Progeress)
+        if (_pointsCounter.Score.Value > _playerProgressHandler.PlayerProgress.Progeress.Value)
         {
-            _playerProgressHandler.PlayerProgress.Progeress = _pointsCounter.Score;
+            _playerProgressHandler.PlayerProgress.Progeress.Value = _pointsCounter.Score.Value;
             _saveLoad.Save(_playerProgressHandler.PlayerProgress);
         }
-
-        Debug.Log(_playerProgressHandler.PlayerProgress.Progeress);
     }
 }

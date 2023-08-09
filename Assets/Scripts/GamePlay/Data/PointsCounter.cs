@@ -1,23 +1,27 @@
+using UniRx;
 using UnityEngine;
 using Zenject;
 
 public class PointsCounter : MonoBehaviour, IPointsCounter
 {
     private ISpeedCounter _speedCounter;
-    private IPlayerProgressHandler _playerProgressHandler;
 
     private float _score;
+    private ReactiveProperty<int> _scoreInt;
 
-    public int Score => (int)_score;
+    public ReactiveProperty<int> Score => _scoreInt;
 
     [Inject]
-    public void Construct(ISpeedCounter speedCounter, IPlayerProgressHandler playerProgressHandler)
+    public void Construct(ISpeedCounter speedCounter)
     {
         _speedCounter = speedCounter;
-
-        _playerProgressHandler = playerProgressHandler;
+        _scoreInt = new ReactiveProperty<int>();
     }
 
-    private void FixedUpdate() =>
+
+    private void FixedUpdate()
+    {
         _score += _speedCounter.Speed * Time.fixedDeltaTime;
+        _scoreInt.Value = (int)_score;
+    }
 }

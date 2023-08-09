@@ -1,4 +1,6 @@
-﻿public interface IPointsCounter
+﻿using UniRx;
+
+public interface IPointsCounter
 {
-    public int Score { get; }
+    public ReactiveProperty<int> Score { get; }
 }

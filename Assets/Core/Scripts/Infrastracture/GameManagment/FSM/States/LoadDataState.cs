@@ -19,7 +19,6 @@ public class LoadDataState : AbstractState<GameActions, ISceneLoader>
 
     public override void EnterState()
     {
-        UnityEngine.Debug.Log("EnterState");
         _playerProgressHandler.PlayerProgress = _saveLoad.Load();
 
         if (_playerProgressHandler.PlayerProgress == null)
@@ -32,6 +31,5 @@ public class LoadDataState : AbstractState<GameActions, ISceneLoader>
 
     public override void ExitState()
     {
-        UnityEngine.Debug.Log("ExitState");
     }
 }
