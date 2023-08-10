@@ -1,5 +1,4 @@
-using Core.Interfaces;
-using Core.Interfaces.EventFunctions;
+using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
@@ -7,29 +6,25 @@ namespace Gameplay.Environment
 {
     public class Ground : MonoBehaviour
     {
-        [SerializeField] private Transform[] _groundUnits;
-        private Transform _unitToSpawnOn;
+        [SerializeField] private List<Transform> _groundUnits;
 
-        private GroundMovement _movement;
+        private IHorizontalMovement _movement;
 
-        public Transform UnitToSpawnOn => GetMostRighPlatform();
+        private const float _lengthOfGroundUnit = 24f;
 
         [Inject]
-        public void Constructor(IEventContainer<ILost> lostEventContainer, GroundMovement movement) => 
-            _movement = movement; 
+        public void Constructor(IHorizontalMovement movement) =>
+            _movement = movement;
 
-        private void FixedUpdate() => 
+        private void FixedUpdate()
+        {
             _movement.Move(_groundUnits);
 
-        private Transform GetMostRighPlatform()
-        {
-            _unitToSpawnOn = _groundUnits[0];
-
-            for (int i = 1; i < _groundUnits.Length; i++)
-                if (_groundUnits[i].position.x > _unitToSpawnOn.position.x)
-                    _unitToSpawnOn = _groundUnits[i];
-
-            return _unitToSpawnOn;
+            for (int i = 0; i < _groundUnits.Count; i++)
+            {
+                if (_groundUnits[i].position.x <= -_lengthOfGroundUnit)
+                    _groundUnits[i].position = new Vector3(_groundUnits[i].position.x + _lengthOfGroundUnit * 3f, 0, 0);
+            }
         }
     }
 }

@@ -22,6 +22,7 @@ namespace Gameplay.Player.FSM
         private PlayerInput _inputService;
 
         private bool isDownMove;
+        private bool isJumping;
 
         public PlayerStateMachine(Player player, PlayerInput inputService, IStateMachine<GameActions> gameFSM)
         {
@@ -51,7 +52,6 @@ namespace Gameplay.Player.FSM
         }
 
         #region Initialize
-
         public void InitializeInputs()
         {
             _inputService.Enable();
@@ -67,6 +67,9 @@ namespace Gameplay.Player.FSM
                 (_currentState as IExecuteDownMove)?.ExecuteDownMove();
             else
                 (_currentState as ICancelDownMove)?.CancelDownMove();
+
+            if (isJumping)
+                (_currentState as IExecuteJump)?.ExecuteJump();
         }
 
         public void OnTriggerEnter(Collider2D collision) =>
@@ -74,7 +77,7 @@ namespace Gameplay.Player.FSM
 
         #region InputCallbacks
         public void OnJump(CallbackContext context) =>
-            (_currentState as IExecuteJump)?.ExecuteJump();
+            isJumping = context.performed;
 
         public void OnGoDown(CallbackContext context) =>
             isDownMove = context.performed;

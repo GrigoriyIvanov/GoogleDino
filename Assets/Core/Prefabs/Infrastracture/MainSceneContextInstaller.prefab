@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5723827115462771041}
   - component: {fileID: 1403364876886327699}
   m_Layer: 0
-  m_Name: SpeedCounter
+  m_Name: SpeedCounterInstaller
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -171,6 +171,7 @@ Transform:
   - {fileID: 4592826305043183087}
   - {fileID: 5791762164161804986}
   - {fileID: 3712256335706180796}
+  - {fileID: 8701205330669706161}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -193,6 +194,7 @@ MonoBehaviour:
   - {fileID: 4592826305043183080}
   - {fileID: 1999378971747101701}
   - {fileID: 5792928735255724650}
+  - {fileID: 1389051595615781356}
   _installerPrefabs: []
   _autoRun: 1
   OnPreInstall:
@@ -265,7 +267,7 @@ GameObject:
   - component: {fileID: 8907335090942981289}
   - component: {fileID: 5154287986698833947}
   m_Layer: 0
-  m_Name: GroundMovementInstaller
+  m_Name: HorizontalMovementInstaller
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -298,3 +300,52 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6873545135ff4d14589db3730d6ffa17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &8816850632699409449
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8701205330669706161}
+  - component: {fileID: 1389051595615781356}
+  m_Layer: 0
+  m_Name: ObstacleInstaller
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8701205330669706161
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8816850632699409449}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4592826305121845873}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1389051595615781356
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8816850632699409449}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c25afbd8bdcbe10438a173c422f1893d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _obstacles:
+  - {fileID: 1021474137616730259, guid: a0886390bf6fe084bace258730718224, type: 3}
+  - {fileID: 7310597178667695351, guid: 0bf8e4b6f8deb694891b264c5c5b012c, type: 3}
+  - {fileID: 7740920137459390805, guid: 2bbe5c5847b78634a8e13269a0ccc91f, type: 3}
+  - {fileID: 814206013673832122, guid: 78ad64be26c1bb54c9111605afddd0cd, type: 3}

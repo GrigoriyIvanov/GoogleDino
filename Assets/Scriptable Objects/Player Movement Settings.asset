@@ -12,6 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89a3197f61e9d584d9981639c20f88d6, type: 3}
   m_Name: Player Movement Settings
   m_EditorClassIdentifier: 
-  MaxAcceleration: 7.5
-  MouseSensivity: 0.05
-  JumpForce: 5
+  JumpingDownSpeed: 5
+  JumpForce: 10

@@ -3,19 +3,22 @@ using UnityEngine;
 
 namespace Gameplay.Environment
 {
-    public class ObstaclePool
+    public class ObstaclePool : IObjectPool<Transform>
     {
-        [SerializeField] private List<GameObject> _poolOfObjects;
+        private List<Transform> _poolOfObjects;
 
-        public ObstaclePool(List<GameObject> poledObjects)
+        public ObstaclePool(List<Transform> poledObjects)
         {
-            _poolOfObjects = new List<GameObject>();
+            _poolOfObjects = new List<Transform>();
             for (int i = 0; i < poledObjects.Count; i++)
             {
-                GameObject tmp = Object.Instantiate(poledObjects[i]);
-                tmp.SetActive(false);
+                for (int j = 0; j < 3; j++)
+                {
+                    Transform tmp = Object.Instantiate(poledObjects[i].gameObject).transform;
+                    tmp.gameObject.SetActive(false);
 
-                _poolOfObjects.Add(tmp);
+                    _poolOfObjects.Add(tmp);
+                }
             }
         }
 
@@ -34,10 +37,10 @@ namespace Gameplay.Environment
             return pooledObject;
         }
 
-        public void PoolObject(GameObject objectToPool)
+        public void PoolObject(Transform objectToPool)
         {
-            objectToPool.transform.parent = null;
-            objectToPool.SetActive(false);
+            //objectToPool.transform.parent = null;
+            objectToPool.gameObject.SetActive(false);
             _poolOfObjects.Add(objectToPool);
         }
     }
