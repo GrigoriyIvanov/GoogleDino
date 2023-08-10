@@ -10,7 +10,7 @@ using Zenject;
 
 namespace Core.UI
 {
-    public class MainCanvasManager : MonoBehaviour, IWin, ILost, IPouse, IStartPlay
+    public class MainCanvasManager : MonoBehaviour, ILost, IStartPlay
     {
         [SerializeField] private Panel[] _panels;
 
@@ -23,18 +23,13 @@ namespace Core.UI
         [Inject]
         public void Construct(
             IStateMachine<GameActions> gameStateMachine,
-            IEventContainer<IWin> winContainer,
             IEventContainer<ILost> lostContainer,
-            IEventContainer<IStartPlay> startContainer,
-            IEventContainer<IPouse> pouseContainer)
+            IEventContainer<IStartPlay> startContainer)
         {
             _gameStateMachine = gameStateMachine;
 
-            winContainer.AddCallback(this);
-            pouseContainer.AddCallback(this);
             lostContainer.AddCallback(this);
             startContainer.AddCallback(this);
-            pouseContainer.AddCallback(this);
         }
 
         private void Awake() =>
@@ -53,22 +48,10 @@ namespace Core.UI
             _currentActive = _panelsByType[newPanelType];
         }
 
-        public void OnWin() =>
-            ChangePanelTo(typeof(WinPanel));
-
         public void OnLost() =>
             ChangePanelTo(typeof(LostPanel));
 
         public void OnStartPlay() =>
             ChangePanelTo(typeof(PlayPanel));
-
-        public void OnPouse() =>
-            ChangePanelTo(typeof(PousePanel));
-
-        private void Update()
-        {
-            if (Input.GetKeyDown(KeyCode.Escape))
-                _gameStateMachine.ActionRespond(GameActions.Pouse);
-        }
     }
 }

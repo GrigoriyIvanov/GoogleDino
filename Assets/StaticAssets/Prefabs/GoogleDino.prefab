@@ -100,7 +100,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2650979049165161515, guid: 5cdb136dc87cdd3449a47f7e7ad6f57b, type: 3}
       propertyPath: m_Name
-      value: ObstacleProducer
+      value: Obstacles
       objectReference: {fileID: 0}
     - target: {fileID: 2650979049165161516, guid: 5cdb136dc87cdd3449a47f7e7ad6f57b, type: 3}
       propertyPath: m_RootOrder
@@ -218,7 +218,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3961117536705529517, guid: 691353af894a6c84da21ab0b32eba621, type: 3}
       propertyPath: m_Name
-      value: Ground
+      value: Environment
       objectReference: {fileID: 0}
     - target: {fileID: 3961117536775137417, guid: 691353af894a6c84da21ab0b32eba621, type: 3}
       propertyPath: m_LocalPosition.x
