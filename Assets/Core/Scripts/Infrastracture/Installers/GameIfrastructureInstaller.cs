@@ -1,5 +1,6 @@
 using Core.Inftastracture.GameManagment;
 using Core.Inftastracture.GameManagment.FSM;
+using Gameplay.Data;
 using UnityEngine;
 using Zenject;
 

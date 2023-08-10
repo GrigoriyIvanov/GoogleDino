@@ -1,3 +1,4 @@
+using Gameplay.ScriptableObjects;
 using UnityEngine;
 using Zenject;
 

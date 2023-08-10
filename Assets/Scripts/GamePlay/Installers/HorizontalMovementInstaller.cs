@@ -1,7 +1,10 @@
 using Zenject;
 
-public class HorizontalMovementInstaller : MonoInstaller
+namespace Gameplay.Installers
 {
-    public override void InstallBindings() =>
-        Container.BindInterfacesTo<Gameplay.Environment.HorizontalMovement>().FromNew().AsSingle();
+    public class HorizontalMovementInstaller : MonoInstaller
+    {
+        public override void InstallBindings() =>
+            Container.BindInterfacesTo<Environment.HorizontalMovement>().FromNew().AsSingle();
+    }
 }

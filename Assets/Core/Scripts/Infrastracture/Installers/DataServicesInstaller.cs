@@ -1,10 +1,14 @@
+using Gameplay.Data;
 using Zenject;
 
-public class DataServicesInstaller : MonoInstaller
+namespace Core.Inftastracture.Installers
 {
-    public override void InstallBindings()
+    public class DataServicesInstaller : MonoInstaller
     {
-        Container.BindInterfacesTo<PlayerProgressHandler>().FromNew().AsSingle();
-        Container.BindInterfacesTo<SaveLoadService>().FromNew().AsSingle();
+        public override void InstallBindings()
+        {
+            Container.BindInterfacesTo<PlayerProgressHandler>().FromNew().AsSingle();
+            Container.BindInterfacesTo<SaveLoadService>().FromNew().AsSingle();
+        }
     }
 }

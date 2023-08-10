@@ -1,4 +1,9 @@
-﻿public interface IPlayerProgressHandler
+﻿using Gameplay.Data;
+
+namespace Gameplay.Interfaces
 {
-    public PlayerProgress PlayerProgress { get; set; }
+    public interface IPlayerProgressHandler
+    {
+        public PlayerProgress PlayerProgress { get; set; }
+    }
 }

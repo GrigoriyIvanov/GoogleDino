@@ -1,14 +1,15 @@
-using Gameplay.Environment;
+using Gameplay.Environment.Obstacles;
 using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
-public class ObstaclesInstaller : MonoInstaller
+namespace Gameplay.Installers
 {
-    [SerializeField] private List<Transform> _obstacles;
-
-    public override void InstallBindings()
+    public class ObstaclesInstaller : MonoInstaller
     {
-        Container.BindInterfacesTo<ObstaclePool>().FromNew().AsSingle().WithArguments(_obstacles);
+        [SerializeField] private List<Transform> _obstacles;
+
+        public override void InstallBindings() =>
+            Container.BindInterfacesTo<ObstaclePool>().FromNew().AsSingle().WithArguments(_obstacles);
     }
 }

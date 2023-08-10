@@ -1,5 +1,6 @@
 using Core.Interfaces;
 using Core.StateMachine;
+using Gameplay.Interfaces;
 using System.Collections.Generic;
 
 namespace Core.Inftastracture.GameManagment.FSM

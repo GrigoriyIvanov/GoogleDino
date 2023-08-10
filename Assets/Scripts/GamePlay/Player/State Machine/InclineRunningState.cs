@@ -1,3 +1,5 @@
+using Gameplay.Interfaces.PlayerFSM;
+
 namespace Gameplay.Player.FSM
 {
     public class InclineRunningState : RunningState, ICancelDownMove

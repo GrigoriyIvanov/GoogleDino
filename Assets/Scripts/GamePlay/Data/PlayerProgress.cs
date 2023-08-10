@@ -1,12 +1,12 @@
-using System;
 using UniRx;
-using UnityEditor;
 
-[Serializable]
-public class PlayerProgress
+namespace Gameplay.Data
 {
-    public ReactiveProperty<int> Progeress;
+    public class PlayerProgress
+    {
+        public ReactiveProperty<int> Progeress;
 
-    public PlayerProgress(int progeress) =>
-         Progeress = new ReactiveProperty<int>(progeress);
+        public PlayerProgress(int progeress) =>
+             Progeress = new ReactiveProperty<int>(progeress);
+    }
 }

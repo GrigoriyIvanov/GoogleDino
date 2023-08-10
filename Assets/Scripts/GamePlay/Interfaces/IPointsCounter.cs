@@ -1,6 +1,9 @@
 ﻿using UniRx;
 
-public interface IPointsCounter
+namespace Gameplay.Interfaces
 {
-    public ReactiveProperty<int> Score { get; }
+    public interface IPointsCounter
+    {
+        public ReactiveProperty<int> Score { get; }
+    }
 }

@@ -1,8 +1,9 @@
+using Gameplay.Interfaces;
 using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
-namespace Gameplay.Environment
+namespace Gameplay.Environment.Ground
 {
     public class Ground : MonoBehaviour
     {

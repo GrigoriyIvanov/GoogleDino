@@ -1,14 +1,19 @@
+using Gameplay.Data;
+using Gameplay.ScriptableObjects;
 using UnityEngine;
 using Zenject;
 
-public class SpeedCounterInstaller : MonoInstaller
+namespace Gameplay.Installers
 {
-    [SerializeField] private SpeedConfig _speedConfig;
+    public class SpeedCounterInstaller : MonoInstaller
+    {
+        [SerializeField] private SpeedConfig _speedConfig;
 
-    public override void InstallBindings() =>
-        Container.
-        BindInterfacesTo<SpeedCounterService>().
-        FromNew().
-        AsSingle().
-        WithArguments(_speedConfig.InitialSpeed, _speedConfig.SpeedIncrement);
+        public override void InstallBindings() =>
+            Container.
+            BindInterfacesTo<SpeedCounterService>().
+            FromNew().
+            AsSingle().
+            WithArguments(_speedConfig.InitialSpeed, _speedConfig.SpeedIncrement);
+    }
 }

@@ -1,11 +1,13 @@
 using Core.Inftastracture.GameManagment.FSM;
 using Core.Interfaces;
 using Core.StateMachine;
+using Gameplay.Data;
+using Gameplay.Interfaces;
 
 public class LoadDataState : AbstractState<GameActions, ISceneLoader>
 {
-    ISaveLoadService _saveLoad;
-    IPlayerProgressHandler _playerProgressHandler;
+    private ISaveLoadService _saveLoad;
+    private IPlayerProgressHandler _playerProgressHandler;
 
     public LoadDataState(
         IStateMachine<GameActions> fsm,

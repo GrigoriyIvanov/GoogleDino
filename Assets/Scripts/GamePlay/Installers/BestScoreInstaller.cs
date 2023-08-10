@@ -1,7 +1,10 @@
 using Zenject;
 
-public class BestScoreInstaller : MonoInstaller
+namespace Gameplay.Installers
 {
-    public override void InstallBindings() =>
-        Container.Bind<BestScoreService>().FromNew().AsSingle().NonLazy();
+    public class BestScoreInstaller : MonoInstaller
+    {
+        public override void InstallBindings() =>
+            Container.Bind<BestScoreService>().FromNew().AsSingle().NonLazy();
+    }
 }

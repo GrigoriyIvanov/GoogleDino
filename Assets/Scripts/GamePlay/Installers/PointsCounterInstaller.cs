@@ -1,10 +1,14 @@
+using Gameplay.Data;
 using UnityEngine;
 using Zenject;
 
-public class PointsCounterInstaller : MonoInstaller
+namespace Gameplay.Installers
 {
-    [SerializeField] private PointsCounter _pointsCounter;
+    public class PointsCounterInstaller : MonoInstaller
+    {
+        [SerializeField] private PointsCounter _pointsCounter;
 
-    public override void InstallBindings() =>
-        Container.BindInterfacesTo<PointsCounter>().FromInstance(_pointsCounter).AsSingle();
+        public override void InstallBindings() =>
+            Container.BindInterfacesTo<PointsCounter>().FromInstance(_pointsCounter).AsSingle();
+    }
 }

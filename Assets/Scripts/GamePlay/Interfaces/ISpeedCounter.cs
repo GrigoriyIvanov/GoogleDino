@@ -1,6 +1,9 @@
-﻿public interface ISpeedCounter
+﻿namespace Gameplay.Interfaces
 {
-    public float Speed { get; }
+    public interface ISpeedCounter
+    {
+        public float Speed { get; }
 
-    public void UpdateSpeed();
+        public void UpdateSpeed();
+    }
 }

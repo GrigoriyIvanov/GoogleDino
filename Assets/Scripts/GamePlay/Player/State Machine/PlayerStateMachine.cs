@@ -1,6 +1,7 @@
 using Core.Inftastracture.GameManagment.FSM;
 using Core.Interfaces.EventFunctions.Updates;
 using Core.StateMachine;
+using Gameplay.Interfaces.PlayerFSM;
 using Main.Interfaces.EventFunctions.Collisions;
 using System.Collections.Generic;
 using UnityEngine;

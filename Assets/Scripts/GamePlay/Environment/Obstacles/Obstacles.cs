@@ -1,9 +1,10 @@
+using Gameplay.Interfaces;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
-namespace Gameplay.Environment
+namespace Gameplay.Environment.Obstacles
 {
     public class Obstacles : MonoBehaviour
     {

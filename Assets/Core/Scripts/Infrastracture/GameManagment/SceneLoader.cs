@@ -20,12 +20,6 @@ namespace Core.Inftastracture.GameManagment
 
         private IEnumerator LoadScene(string name, Action onLoaded = null)
         {
-            //if (SceneManager.GetActiveScene().name == name)
-            //{
-            //    onLoaded?.Invoke();
-            //    yield break;
-            //}
-
             AsyncOperation nextSceneLoading = SceneManager.LoadSceneAsync(name);
 
             while (!nextSceneLoading.isDone)

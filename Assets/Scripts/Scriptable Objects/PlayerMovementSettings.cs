@@ -1,8 +1,11 @@
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Settings/Player Movement", fileName = "Player Movement Settings")]
-public class PlayerMovementSettings : ScriptableObject
+namespace Gameplay.ScriptableObjects
 {
-    public float JumpingDownSpeed = 5f;
-    public float JumpForce = 5f;
+    [CreateAssetMenu(menuName = "Settings/Player Movement", fileName = "Player Movement Settings")]
+    public class PlayerMovementSettings : ScriptableObject
+    {
+        public float JumpingDownSpeed = 5f;
+        public float JumpForce = 5f;
+    }
 }

@@ -1,3 +1,5 @@
+using Gameplay.Interfaces.PlayerFSM;
+
 namespace Gameplay.Player.FSM
 {
     public abstract class RunningState : AliveState, IExecuteJump

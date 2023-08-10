@@ -1,8 +1,11 @@
 using UnityEngine;
 
-public interface IObjectPool<T> where T : Object
+namespace Gameplay.Interfaces
 {
-    public void PoolObject(T objectToPool);
+    public interface IObjectPool<T> where T : Object
+    {
+        public void PoolObject(T objectToPool);
 
-    public T GetObstacle();
+        public T GetObstacle();
+    }
 }

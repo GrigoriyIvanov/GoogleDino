@@ -1,7 +1,8 @@
+using Gameplay.Interfaces;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Gameplay.Environment
+namespace Gameplay.Environment.Obstacles
 {
     public class ObstaclePool : IObjectPool<Transform>
     {
@@ -39,7 +40,6 @@ namespace Gameplay.Environment
 
         public void PoolObject(Transform objectToPool)
         {
-            //objectToPool.transform.parent = null;
             objectToPool.gameObject.SetActive(false);
             _poolOfObjects.Add(objectToPool);
         }

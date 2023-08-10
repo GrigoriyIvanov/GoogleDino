@@ -1,4 +1,5 @@
 using Core.Interfaces.EventFunctions.Updates;
+using Gameplay.Interfaces.PlayerFSM;
 
 namespace Gameplay.Player.FSM
 {

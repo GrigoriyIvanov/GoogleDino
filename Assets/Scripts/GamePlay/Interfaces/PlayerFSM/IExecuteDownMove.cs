@@ -1,4 +1,4 @@
-namespace Gameplay.Player.FSM
+namespace Gameplay.Interfaces.PlayerFSM
 {
     public interface IExecuteDownMove
     {

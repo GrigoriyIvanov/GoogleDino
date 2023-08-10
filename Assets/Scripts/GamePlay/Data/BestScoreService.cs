@@ -1,5 +1,6 @@
 using Core.Interfaces;
 using Core.Interfaces.EventFunctions;
+using Gameplay.Interfaces;
 using Zenject;
 
 public class BestScoreService : ILost
