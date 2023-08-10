@@ -129,6 +129,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _counter: {fileID: 873648773550955911}
   _bestScore: {fileID: 249989323236352823}
+  _flickingPeriod: 0.35
+  _flickCount: 6
 --- !u!1 &5383314415614494080
 GameObject:
   m_ObjectHideFlags: 0
