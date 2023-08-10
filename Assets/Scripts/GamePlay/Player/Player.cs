@@ -1,6 +1,5 @@
 using Gameplay.ScriptableObjects;
 using UnityEngine;
-using Zenject;
 
 namespace Gameplay.Player
 {
@@ -12,14 +11,16 @@ namespace Gameplay.Player
         private PlayerMovementSettings _movementSettings;
 
         private GroundChecker _groundChecker;
+        private GameSounds _gameSounds;
 
         public Animator Animator => _animator;
         public bool IsGrounded => _groundChecker.isGrounded;
 
-        [Inject]
-        public void Construct(PlayerMovementSettings movementSettings) =>
+        public Player(PlayerMovementSettings movementSettings, GameSounds gameSounds)
+        {
             _movementSettings = movementSettings;
-
+            _gameSounds = gameSounds;
+        }
         public void SetComponents(Rigidbody2D rigidbody, Animator animator)
         {
             _rigidbody = rigidbody;
@@ -27,12 +28,17 @@ namespace Gameplay.Player
             _groundChecker = new GroundChecker(_rigidbody.transform);
         }
 
-        public void ProduceJump() => MakeJump();
+        public void ProduceJump()
+        {
+            _gameSounds.PlayJumpSound();
+            MakeJump();
+        }
 
         public void ProduceDownJump() => MakeJump(-1);
 
         public void MakeDead()
         {
+            _gameSounds.PlayDeathSound();
             Animator.SetBool("Dead", true);
             _rigidbody.simulated = false;
         }

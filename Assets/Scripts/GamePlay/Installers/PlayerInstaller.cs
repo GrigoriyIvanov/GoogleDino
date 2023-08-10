@@ -14,7 +14,7 @@ namespace Gameplay.Installers
 
         public override void InstallBindings()
         {
-            Container.Bind<Gameplay.Player.Player>().FromNew().AsSingle().WithArguments(_movementSettings);
+            Container.Bind<Player.Player>().FromNew().AsSingle().WithArguments(_movementSettings);
             Container.Bind<PlayerInput>().FromNew().AsSingle();
             Container.BindInterfacesTo<PlayerStateMachine>().FromNew().AsSingle();
 

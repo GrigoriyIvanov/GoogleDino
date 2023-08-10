@@ -1,4 +1,5 @@
 using Gameplay.Interfaces;
+using Gameplay.Player;
 using System.Collections;
 using TMPro;
 using UniRx;
@@ -18,14 +19,17 @@ namespace Core.UI.Panels
         private IPointsCounter _pointsCounter;
         private IPlayerProgressHandler _playerProgressHandler;
 
+        private GameSounds _gameSounds;
+
         private Coroutine _flicking;
         private int _flickCounter;
 
         [Inject]
-        public void Construct(IPointsCounter pointsCounter, IPlayerProgressHandler playerProgressHandler)
+        public void Construct(IPointsCounter pointsCounter, IPlayerProgressHandler playerProgressHandler, GameSounds gameSounds)
         {
             _pointsCounter = pointsCounter;
             _playerProgressHandler = playerProgressHandler;
+            _gameSounds = gameSounds;
         }
 
         private void Awake()
@@ -44,7 +48,10 @@ namespace Core.UI.Panels
                     DispalyValueOn(_counter, value);
 
                     if (value > 0 && value % 100 == 0)
+                    {
+                        _gameSounds.PlayScoreUpdateSound();
                         _flicking = StartCoroutine(Flick());
+                    }
                 });
 
         }

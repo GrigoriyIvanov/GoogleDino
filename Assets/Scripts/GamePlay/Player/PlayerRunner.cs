@@ -12,7 +12,11 @@ namespace Gameplay.Player
         [SerializeField, HideInInspector] private Rigidbody2D _rigidbody;
         [SerializeField, HideInInspector] private Animator _animator;
 
-        [Inject] private Player _player;
+        private Player _player;
+
+        [Inject]
+        public void Constructor(Player player) =>
+            _player = player;
 
         private void Awake()
         {
