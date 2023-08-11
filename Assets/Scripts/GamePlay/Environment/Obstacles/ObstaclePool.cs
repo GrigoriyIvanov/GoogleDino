@@ -13,7 +13,7 @@ namespace Gameplay.Environment.Obstacles
             _poolOfObjects = new List<Transform>();
             for (int i = 0; i < poledObjects.Count; i++)
             {
-                for (int j = 0; j < 3; j++)
+                for (int j = 0; j < 1; j++)
                 {
                     Transform tmp = Object.Instantiate(poledObjects[i].gameObject).transform;
                     tmp.gameObject.SetActive(false);
@@ -30,7 +30,7 @@ namespace Gameplay.Environment.Obstacles
 
             int pointer = Random.Range(0, _poolOfObjects.Count);
 
-            Transform pooledObject = _poolOfObjects[pointer].transform;
+            Transform pooledObject = _poolOfObjects[pointer];
             pooledObject.gameObject.SetActive(true);
 
             _poolOfObjects.RemoveAt(pointer);

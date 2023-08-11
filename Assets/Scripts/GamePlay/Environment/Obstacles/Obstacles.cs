@@ -12,7 +12,7 @@ namespace Gameplay.Environment.Obstacles
         [SerializeField] private float _xBorder = -24;
         [SerializeField] private Transform _spawnPoint;
 
-        private List<Transform> _activeObstacles;
+        private List<Transform> _normalMovementSpeed;
         
         private IHorizontalMovement _movement;
         private IObjectPool<Transform> _obstaclePool;
@@ -26,23 +26,23 @@ namespace Gameplay.Environment.Obstacles
 
         private void Awake()
         {
-            _activeObstacles = new List<Transform>();
+            _normalMovementSpeed = new List<Transform>();
 
             StartCoroutine(SpawnCycle());
         }
 
         private void FixedUpdate()
         {
-            for (int i = 0; i < _activeObstacles.Count; i++)
+            for (int i = 0; i < _normalMovementSpeed.Count; i++)
             {
-                if (_activeObstacles[i].transform.position.x < _xBorder)
+                if (_normalMovementSpeed[i].transform.position.x < _xBorder)
                 {
-                    _obstaclePool.PoolObject(_activeObstacles[i]);
-                    _activeObstacles.RemoveAt(i);
+                    _obstaclePool.PoolObject(_normalMovementSpeed[i]);
+                    _normalMovementSpeed.RemoveAt(i);
                 }
             }
 
-            _movement.Move(_activeObstacles);
+            _movement.Move(_normalMovementSpeed);
         }
 
         private void ProduceObstacle()
@@ -55,7 +55,7 @@ namespace Gameplay.Environment.Obstacles
             obstacle.position = _spawnPoint.position + new Vector3(Random.Range(-2f, 2f), 0, 0);
             obstacle.parent = transform;
 
-            _activeObstacles.Add(obstacle);
+            _normalMovementSpeed.Add(obstacle);
         }
 
         private IEnumerator SpawnCycle()

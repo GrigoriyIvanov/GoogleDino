@@ -21,6 +21,7 @@ namespace Gameplay.Player
             _movementSettings = movementSettings;
             _gameSounds = gameSounds;
         }
+
         public void SetComponents(Rigidbody2D rigidbody, Animator animator)
         {
             _rigidbody = rigidbody;
@@ -41,6 +42,7 @@ namespace Gameplay.Player
             _gameSounds.PlayDeathSound();
             Animator.SetBool("Dead", true);
             _rigidbody.simulated = false;
+            Time.timeScale = 0;
         }
 
         public void MakeJump(float directionY = 1) =>
